@@ -18,6 +18,14 @@ def zero_degree(coefficient):
 		print("There is no solution to your equation...")
 	quit()
 
+def error_negative_root():
+	print("error: Syntax error while trying to calculate square root: square root of negative number is impossible!")
+	quit()
+
+def error_root():
+	print("error: Syntax error while trying to calculate square root!")
+	quit()
+
 def form(reduced_form):
 	a,b,c = reduced_form["a"], reduced_form["b"], reduced_form["c"]
 	print("Reduced form:"),
@@ -57,3 +65,22 @@ def disc(discriminant):
 		print("The discriminant is strictly negative. There are two complex roots:")
 	else:
 		print("The discriminant is strictly positive. There are two real roots:")
+
+def explain_disc(a, b, c, solution):
+	print("The equation's discriminant is calculated with the formula b^2 - 4ac")
+	print("Here, ["),
+	print(b),
+	print("^ 2 - 4 *"),
+	print(a),
+	print("*"),
+	print(c),
+	print("] results in"),
+	print(solution)
+
+def explain_one_solution(a, b):
+	print("The solution is obtained with the formula -b / 2a")
+	print("Here, [ -"),
+	print(b),
+	print("/ 2 *"),
+	print(a),
+	print("] results in:")

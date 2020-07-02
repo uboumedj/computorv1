@@ -1,6 +1,11 @@
-def discriminant(reduced_form):
+import display
+
+def discriminant(reduced_form, details):
 	a,b,c = reduced_form["a"], reduced_form["b"], reduced_form["c"]
-	return (b * b) - (4 * a * c)
+	solution = (b * b) - (4 * a * c)
+	if details == True:
+		display.explain_disc(a, b, c, solution)
+	return solution
 
 def solve_first_degree(reduced_form):
 	b,c = reduced_form["b"], reduced_form["c"]
@@ -27,8 +32,7 @@ def search_interval(start, end, num):
 
 def square_root(num):
 	if num < 0:
-		print("error: Syntax error while trying to calculate square root: square root of negative number is impossible!")
-		quit()
+		display.error_negative_root()
 	i = 1
 	found = False
 	result = 0
@@ -41,13 +45,14 @@ def square_root(num):
 			found = True
 		i += 1
 	if result == 0:
-		print("error: Syntax error while trying to calculate square root!")
-		quit()
+		display.error_root()
 	return result
 
-def solve_second_degree(reduced_form, discriminant):
+def solve_second_degree(reduced_form, discriminant, details):
 	a,b,c = reduced_form["a"], reduced_form["b"], reduced_form["c"]
 	if discriminant == 0:
+		if details == True:
+			display.explain_one_solution(a, b)
 		print(-b / (2 * a))
 	elif discriminant < 0:
 		imaginary_part = round(square_root(-discriminant) / (2 * a), 6)

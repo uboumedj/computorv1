@@ -57,8 +57,8 @@ def get_coefficients(equation):
 	coefficients = parse_one_side(right_side, coefficients, -1)
 	return coefficients
 
-def parse_equation(argv):
-	equation = argv[1].split('=')
+def parse_equation(input):
+	equation = input.split('=')
 	if len(equation) != 2:
 		display.error_syntax()
 	else:
@@ -77,16 +77,21 @@ def main(argv):
 	if len(argv) <= 1:
 		display.usage()
 	else:
-		reduced_form = parse_equation(argv)
+		if argv[1] != "-v":
+			reduced_form = parse_equation(argv[1])
+			details = False
+		else:
+			reduced_form = parse_equation(argv[2])
+			details = True
 		display.form(reduced_form)
 		degree = parse_degree(reduced_form)
 		display.degree(degree)
 		if degree == 2:
-			discriminant = calculate.discriminant(reduced_form)
+			discriminant = calculate.discriminant(reduced_form, details)
 			display.disc(discriminant)
-			solution = calculate.solve_second_degree(reduced_form, discriminant)
+			calculate.solve_second_degree(reduced_form, discriminant, details)
 		else:
-			solution = calculate.solve_first_degree(reduced_form)
+			calculate.solve_first_degree(reduced_form)
 
 if __name__ == "__main__":
 	main(sys.argv)
