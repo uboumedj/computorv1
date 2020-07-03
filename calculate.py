@@ -33,6 +33,8 @@ def search_interval(start, end, num):
 def square_root(num):
 	if num < 0:
 		display.error_negative_root()
+	elif num > 2147483647:
+		display.error_too_big()
 	i = 1
 	found = False
 	result = 0
@@ -55,14 +57,16 @@ def solve_second_degree(reduced_form, discriminant, details):
 			display.explain_one_solution(a, b)
 		print(-b / (2 * a))
 	elif discriminant < 0:
+		if details == True:
+			display.explain_negative_discriminant(a, b, discriminant)
 		imaginary_part = round(square_root(-discriminant) / (2 * a), 6)
 		print(-b / (2 * a)),
-		print("- i *"),
-		print(imaginary_part)
+		print("- " + str(imaginary_part) + "i")
 		print(-b / (2 * a)),
-		print("+ i *"),
-		print(imaginary_part)
+		print("+ " + str(imaginary_part) + "i"),
 	elif discriminant > 0:
+		if details == True:
+			display.explain_positive_discriminant(a, b, discriminant)
 		discriminant_sqrt = square_root(discriminant)
 		print(round((-b + discriminant_sqrt) / (2 * a), 6))
 		print(round((-b - discriminant_sqrt) / (2 * a), 6))

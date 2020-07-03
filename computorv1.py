@@ -81,7 +81,10 @@ def main(argv):
 			reduced_form = parse_equation(argv[1])
 			details = False
 		else:
-			reduced_form = parse_equation(argv[2])
+			if len(argv) <= 2:
+				display.usage()
+			else:
+				reduced_form = parse_equation(argv[2])
 			details = True
 		display.form(reduced_form)
 		degree = parse_degree(reduced_form)

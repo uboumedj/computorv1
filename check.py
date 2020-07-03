@@ -1,3 +1,5 @@
+import display
+
 def is_float(string):
 	try:
 		float(string)
@@ -12,9 +14,7 @@ def is_valid_variable(string):
 		check_invalid_degree = string.split("^")
 		if check_invalid_degree[0] == "X" and len(check_invalid_degree) == 2:
 			if is_float(check_invalid_degree[1]):
-				print("Polynomial degree: " + check_invalid_degree[1])
-				print("The polynomial degree is greater than 2. This program only solves second degree equations.")
-				quit()
+				display.error_degree(check_invalid_degree[1])
 			else:
 				return False
 		else:
